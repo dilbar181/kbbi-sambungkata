@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KBBI — Kamus Besar Bahasa Indonesia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-logo">ꦏ</span>
+        <div class="brand-text">
+          <h1 class="brand-title">KBBI</h1>
+          <p class="brand-sub">Kamus Besar Bahasa Indonesia</p>
+        </div>
+      </div>
+      <div class="header-controls">
+        <button class="btn-icon" id="btnTheme" title="Toggle tema">
+          <span class="icon-sun">☀</span>
+          <span class="icon-moon">☽</span>
+        </button>
+        <button class="btn-random" id="btnRandom">
+          <span>✦</span> Kata Acak
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats Banner -->
+  <div class="stats-banner" id="statsBanner">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <span class="stat-num" id="statTotal">—</span>
+        <span class="stat-label">Total Kata</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num" id="statLetters">26</span>
+        <span class="stat-label">Huruf</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num" id="statLoaded">...</span>
+        <span class="stat-label">Status</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Search Section -->
+    <section class="search-section">
+      <div class="search-container">
+        <div class="search-box-wrap">
+          <span class="search-icon">⌕</span>
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Cari kata dalam KBBI..."
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button class="search-clear" id="searchClear" title="Hapus">✕</button>
+        </div>
+
+        <!-- Mode Toggle -->
+        <div class="mode-toggle">
+          <button class="mode-btn active" data-mode="prefix" id="modePrefix">
+            <span class="mode-icon">⇢</span>
+            <span>Awalan</span>
+          </button>
+          <button class="mode-btn" data-mode="contains" id="modeContains">
+            <span class="mode-icon">⊂</span>
+            <span>Mengandung</span>
+          </button>
+          <button class="mode-btn" data-mode="sambung" id="modeSambung">
+            <span class="mode-icon">⟳</span>
+            <span>Sambung Kata</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sambung Kata hint -->
+      <div class="sambung-hint" id="sambungHint">
+        <span class="sambung-tag">MODE SAMBUNG KATA</span>
+        Masukkan huruf/suku kata terakhir. Tampilkan kata yang dimulai dengan huruf tersebut untuk menyambung permainan.
+      </div>
+
+      <!-- Suggestions Dropdown -->
+      <div class="suggestions-wrapper" id="suggestionsWrapper">
+        <div class="suggestions-list" id="suggestionsList"></div>
+        <div class="suggestions-footer" id="suggestionsFooter"></div>
+      </div>
+    </section>
+
+    <!-- Filter A-Z -->
+    <section class="filter-section">
+      <div class="filter-label">Filter Huruf</div>
+      <div class="filter-grid" id="filterGrid"></div>
+    </section>
+
+    <!-- Results Area -->
+    <section class="results-section" id="resultsSection">
+      <div class="results-header" id="resultsHeader"></div>
+      <div class="results-grid" id="resultsGrid"></div>
+      <div class="results-empty" id="resultsEmpty" style="display:none">
+        <div class="empty-icon">◌</div>
+        <p>Tidak ada kata yang ditemukan.</p>
+      </div>
+    </section>
+
+    <!-- Letter Stats Section -->
+    <section class="letterstats-section" id="letterStatsSection">
+      <h2 class="section-title">Distribusi Kata per Huruf</h2>
+      <div class="letterstats-grid" id="letterStatsGrid"></div>
+    </section>
+
+  </main>
+
+  <!-- Random Word Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-label">✦ Kata Acak</div>
+      <div class="modal-word" id="modalWord"></div>
+      <div class="modal-meta" id="modalMeta"></div>
+      <div class="modal-actions">
+        <button class="btn-ghost" id="modalClose">Tutup</button>
+        <button class="btn-primary" id="modalAnother">Kata Lain</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-inner">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">Memuat database KBBI...</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
